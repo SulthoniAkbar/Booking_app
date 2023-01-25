@@ -1,8 +1,10 @@
+import 'package:booking_app/models/media_model.dart';
+
 class FeedbackModel {
   int id;
-  String roomid;
+  int roomid;
   String description;
-  String media;
+  List<MediasModel> media;
 
   FeedbackModel({
     this.id,
@@ -15,14 +17,19 @@ class FeedbackModel {
     id = json['id'];
     roomid = json['room_id'];
     description = json['description'];
-    // media = json['media'];
+    media = json['medias[]']
+        .map(
+          (media) => MediasModel.fromJson(media),
+        )
+        .toList();
   }
 
   Map<String, dynamic> toJson() {
     return {
-      'name': id,
+      'id': id,
       'room_id': roomid,
       'description': description,
+      'media': media.map((medias) => medias.toJson()).toList(),
     };
   }
 }

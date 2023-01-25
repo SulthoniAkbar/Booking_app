@@ -2,7 +2,7 @@ import 'package:booking_app/pages/booking_room.page.dart';
 import 'package:booking_app/themes.dart';
 import 'package:flutter/material.dart';
 
-class BookingCard extends StatelessWidget {
+class ScheduleCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -10,8 +10,8 @@ class BookingCard extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => BookingRoomPage(),
-          ),
+              // builder: (context) => BookingRoomPage(),
+              ),
         );
       },
       child: Container(
@@ -71,6 +71,16 @@ class BookingCard extends StatelessWidget {
                   ),
                   Text(
                     '120',
+                    style: primaryTextStyle3.copyWith(
+                      fontWeight: semibold,
+                      fontSize: 14,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 6,
+                  ),
+                  Text(
+                    'Lantai 1',
                     style: primaryTextStyle3.copyWith(
                       fontWeight: semibold,
                       fontSize: 14,

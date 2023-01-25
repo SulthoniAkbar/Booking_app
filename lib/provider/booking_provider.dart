@@ -5,7 +5,7 @@ import 'package:booking_app/models/booking_model.dart';
 class AuthProvider with ChangeNotifier {
   BookingModel _booking;
 
-  BookingModel get user => _booking;
+  BookingModel get booking => _booking;
 
   set booking(BookingModel booking) {
     _booking = booking;

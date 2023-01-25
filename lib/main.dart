@@ -4,13 +4,14 @@ import 'package:booking_app/pages/home/bottomsheet/notification.dart';
 import 'package:booking_app/pages/home/main_page.dart';
 import 'package:booking_app/pages/edit_profile_page.dart';
 import 'package:booking_app/pages/reporting_page.dart';
+import 'package:booking_app/pages/schedule_page.dart';
 import 'package:booking_app/pages/sign_in_pages.dart';
 import 'package:booking_app/pages/sign_up_pages.dart';
 import 'package:booking_app/pages/listbooking_page.dart';
 import 'package:booking_app/pages/splashscreen_page.dart';
 import 'package:booking_app/provider/auth_provider.dart';
+import 'package:booking_app/provider/feedback_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 void main() => runApp(MyApp());
@@ -22,6 +23,9 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: (context) => AuthProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => FeedbackProvider(),
         )
       ],
       child: MaterialApp(
@@ -35,9 +39,9 @@ class MyApp extends StatelessWidget {
           '/editprofile': (context) => EditProfilePage(),
           '/report': (context) => ReportingPage(),
           '/booking': (context) => BookingPage(),
-          '/listruang': (context) => ListNotifPage(),
-          '/listbooking': (context) => ListNotifPage(),
+          '/listruang': (context) => ListBooking(),
           '/bookingroom': (context) => BookingRoomPage(),
+          '/schedule': (context) => SchedulePage(),
         },
       ),
     );

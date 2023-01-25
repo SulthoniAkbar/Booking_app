@@ -20,6 +20,7 @@ class RoomModel {
 
   Map<String, dynamic> toJson() {
     return {
+      'id': id,
       'name': name,
       'floor': floor,
       'capacity': capacity,

@@ -23,6 +23,15 @@ class _SignInPagesState extends State<SignInPages> {
         email: emailController.text,
         password: passwordController.text,
       )) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: succesColor,
+            content: Text(
+              'Berhasil Login',
+              textAlign: TextAlign.center,
+            ),
+          ),
+        );
         Navigator.pushNamed(context, '/home');
       } else {
         ScaffoldMessenger.of(context).showSnackBar(

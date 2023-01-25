@@ -5,7 +5,19 @@ import 'package:provider/provider.dart';
 
 import '../models/user_model.dart';
 
-class EditProfilePage extends StatelessWidget {
+class EditProfilePage extends StatefulWidget {
+  TextEditingController nameController = TextEditingController(text: '');
+  TextEditingController phoneController = TextEditingController(text: '');
+  TextEditingController devisionController = TextEditingController(text: '');
+  TextEditingController genderController = TextEditingController(text: '');
+  TextEditingController addressController = TextEditingController(text: '');
+  TextEditingController nipController = TextEditingController(text: '');
+
+  @override
+  State<EditProfilePage> createState() => _EditProfilePageState();
+}
+
+class _EditProfilePageState extends State<EditProfilePage> {
   @override
   Widget build(BuildContext context) {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
@@ -40,26 +52,36 @@ class EditProfilePage extends StatelessWidget {
     Widget nameInput() {
       return Container(
         margin: EdgeInsets.only(
-          top: 1,
+          top: 30,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Name',
-              style: subtitleTextStyle.copyWith(
-                fontSize: 13,
+              'Nama',
+              style: primaryTextStyle3.copyWith(
+                fontSize: 14,
+                fontWeight: medium,
               ),
             ),
-            TextFormField(
-              style: primaryTextStyle,
-              decoration: InputDecoration(
-                hintText: user.name,
-                hintStyle: primaryTextStyle,
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(
-                    color: primaryColor,
-                  ),
+            SizedBox(
+              height: 12,
+            ),
+            Container(
+              height: 40,
+              padding: EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 7,
+              ),
+              decoration: BoxDecoration(
+                color: primaryTextColor,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: TextFormField(
+                style: primaryTextStyle3,
+                decoration: InputDecoration.collapsed(
+                  hintText: user.name,
+                  hintStyle: subtitleTextStyle,
                 ),
               ),
             ),
@@ -78,19 +100,29 @@ class EditProfilePage extends StatelessWidget {
           children: [
             Text(
               'Devisi',
-              style: subtitleTextStyle.copyWith(
-                fontSize: 13,
+              style: primaryTextStyle3.copyWith(
+                fontSize: 14,
+                fontWeight: medium,
               ),
             ),
-            TextFormField(
-              style: primaryTextStyle,
-              decoration: InputDecoration(
-                hintText: user.devisi,
-                hintStyle: primaryTextStyle,
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(
-                    color: subtitleTextColor,
-                  ),
+            SizedBox(
+              height: 12,
+            ),
+            Container(
+              height: 40,
+              padding: EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 7,
+              ),
+              decoration: BoxDecoration(
+                color: primaryTextColor,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: TextFormField(
+                style: primaryTextStyle,
+                decoration: InputDecoration.collapsed(
+                  hintText: user.devisi,
+                  hintStyle: subtitleTextStyle,
                 ),
               ),
             ),
@@ -109,19 +141,29 @@ class EditProfilePage extends StatelessWidget {
           children: [
             Text(
               'Alamat',
-              style: subtitleTextStyle.copyWith(
-                fontSize: 13,
+              style: primaryTextStyle3.copyWith(
+                fontSize: 14,
+                fontWeight: medium,
               ),
             ),
-            TextFormField(
-              style: primaryTextStyle,
-              decoration: InputDecoration(
-                hintText: user.address,
-                hintStyle: primaryTextStyle,
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(
-                    color: subtitleTextColor,
-                  ),
+            SizedBox(
+              height: 12,
+            ),
+            Container(
+              height: 40,
+              padding: EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 7,
+              ),
+              decoration: BoxDecoration(
+                color: primaryTextColor,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: TextFormField(
+                style: primaryTextStyle,
+                decoration: InputDecoration.collapsed(
+                  hintText: user.address,
+                  hintStyle: subtitleTextStyle,
                 ),
               ),
             ),
@@ -139,20 +181,30 @@ class EditProfilePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              user.phone,
-              style: subtitleTextStyle.copyWith(
-                fontSize: 13,
+              'Phone',
+              style: primaryTextStyle3.copyWith(
+                fontSize: 14,
+                fontWeight: medium,
               ),
             ),
-            TextFormField(
-              style: primaryTextStyle,
-              decoration: InputDecoration(
-                hintText: 'contoh: +628123456789',
-                hintStyle: primaryTextStyle,
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(
-                    color: subtitleTextColor,
-                  ),
+            SizedBox(
+              height: 12,
+            ),
+            Container(
+              height: 40,
+              padding: EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 7,
+              ),
+              decoration: BoxDecoration(
+                color: primaryTextColor,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: TextFormField(
+                style: primaryTextStyle3,
+                decoration: InputDecoration.collapsed(
+                  hintText: user.phone,
+                  hintStyle: subtitleTextStyle,
                 ),
               ),
             ),
@@ -171,18 +223,19 @@ class EditProfilePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              width: 100,
-              height: 100,
+              width: 70,
+              height: 70,
               margin: EdgeInsets.only(
                 top: defaultMargin,
               ),
-              // decoration: BoxDecoration(
-              //   shape: BoxShape.circle,
-              //   image: DecorationImage(
-              //     fit: BoxFit.fill,
-              //     image: NetworkImage('assets/splashscreen.png'),
-              //   ),
-              // ),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  fit: BoxFit.fill,
+                  image: AssetImage('assets/icon_username.png'),
+                  //     image: NetworkImage('assets/splashscreen.png'),
+                ),
+              ),
             ),
             nameInput(),
             devisi(),

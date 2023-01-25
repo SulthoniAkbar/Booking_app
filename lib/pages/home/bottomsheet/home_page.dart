@@ -89,7 +89,7 @@ class HomePage extends StatelessWidget {
         margin: EdgeInsets.only(top: 19),
         child: TextButton(
           onPressed: () {
-            // Navigator.pushNamed(context, '/listruang');
+            Navigator.pushNamed(context, '/schedule');
           },
           style: TextButton.styleFrom(
             backgroundColor: primaryColor,

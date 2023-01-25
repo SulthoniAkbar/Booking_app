@@ -1,9 +1,48 @@
+import 'package:booking_app/provider/feedback_provider.dart';
 import 'package:booking_app/themes.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class ReportingPage extends StatelessWidget {
+class ReportingPage extends StatefulWidget {
+  @override
+  State<ReportingPage> createState() => _ReportingPageState();
+}
+
+class _ReportingPageState extends State<ReportingPage> {
+  TextEditingController roomidController = TextEditingController(text: '');
+  TextEditingController descriptionController = TextEditingController(text: '');
   @override
   Widget build(BuildContext context) {
+    FeedbackProvider feedbackProvider = Provider.of<FeedbackProvider>(context);
+
+    handeleReport() async {
+      if (await feedbackProvider.feedback(
+        roomid: roomidController.text,
+        description: descriptionController.text,
+      )) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: succesColor,
+            content: Text(
+              'Berhasil Melakukan Feedback',
+              textAlign: TextAlign.center,
+            ),
+          ),
+        );
+        Navigator.pushNamed(context, '/home');
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: alertColor,
+            content: Text(
+              'Gagal',
+              textAlign: TextAlign.center,
+            ),
+          ),
+        );
+      }
+    }
+
     Widget header() {
       return AppBar(
         backgroundColor: bgColor1,
@@ -12,21 +51,6 @@ class ReportingPage extends StatelessWidget {
         elevation: 0,
       );
     }
-    // Widget header() {
-    //   return Container(
-    //     margin: EdgeInsets.only(top: 30),
-    //     child: Column(
-    //       crossAxisAlignment: CrossAxisAlignment.start,
-    //       children: [
-    //         Text(
-    //           'Reporting',
-    //           style: primaryTextStyle3.copyWith(
-    //               fontSize: 24, fontWeight: semibold),
-    //         ),
-    //       ],
-    //     ),
-    //   );
-    // }
 
     Widget roomInput() {
       return Container(
@@ -58,9 +82,10 @@ class ReportingPage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
               ),
               child: TextFormField(
+                controller: roomidController,
                 style: primaryTextStyle,
                 decoration: InputDecoration.collapsed(
-                  hintText: 'Your Full Name',
+                  hintText: 'Nama Ruang',
                   hintStyle: subtitleTextStyle,
                 ),
               ),
@@ -114,6 +139,7 @@ class ReportingPage extends StatelessWidget {
                     ),
                     Expanded(
                       child: TextFormField(
+                        controller: descriptionController,
                         style: primaryTextStyle,
                         decoration: InputDecoration.collapsed(
                           hintText: 'Deskripsi',

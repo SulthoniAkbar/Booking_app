@@ -37,6 +37,10 @@ TextStyle succesTextStyle = GoogleFonts.poppins(
   color: succesColor,
 );
 
+TextStyle whiteTextStyle = GoogleFonts.poppins(
+  color: whiteColor,
+);
+
 FontWeight light = FontWeight.w300;
 FontWeight reguler = FontWeight.w400;
 FontWeight medium = FontWeight.w500;

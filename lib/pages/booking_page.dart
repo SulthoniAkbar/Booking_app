@@ -41,49 +41,49 @@ class _BookingPageState extends State<BookingPage> {
               height: 12,
             ),
             Container(
-                height: 40,
-                padding: EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 7,
+              height: 40,
+              padding: EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 7,
+              ),
+              decoration: BoxDecoration(
+                color: primaryTextColor,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: TextFormField(
+                controller: dateController,
+                style: primaryTextStyle3,
+                decoration: InputDecoration(
+                  icon: Icon(Icons.calendar_today),
+                  hintText: "Enter Date",
                 ),
-                decoration: BoxDecoration(
-                  color: primaryTextColor,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                // child: TextFormField(
-                //   controller: dateController,
-                //   style: primaryTextStyle3,
-                //   decoration: InputDecoration(
-                //     icon: Icon(Icons.calendar_today),
-                //     hintText: "Enter Date",
-                //   ),
-                //   readOnly: true,
-                //   onTap: () async {
-                //     DateTime pickedDate = await showDatePicker(
-                //         context: context,
-                //         initialDate: DateTime.now(),
-                //         firstDate: DateTime(1950),
-                //         lastDate: DateTime(2050));
-
-                //     if (pickedDate != null) {
-                //       dateController.text = pickedDate.toString();
-                //     }
-                //   },
-                // ),
-                child: TextButton(
-                    onPressed: () {
-                      DatePicker.showDateTimePicker(context,
+                readOnly: true,
+                onTap: () async {
+                  DatePicker.showDateTimePicker(context,
                           showTitleActions: true,
                           minTime: DateTime.now(), onChanged: (date) {
-                        print('change $date');
-                      }, onConfirm: (date) {
-                        print('confirm $date');
-                      }, currentTime: DateTime.now(), locale: LocaleType.id);
-                    },
-                    child: Text(
-                      'show date time picker (Chinese)',
-                      style: TextStyle(color: Colors.blue),
-                    )))
+                    print('change $date');
+                  }, onConfirm: (date) {
+                    print('confirm $date');
+                  }, currentTime: DateTime.now(), locale: LocaleType.id)
+                      .toString();
+                },
+              ),
+            ),
+            // child: TextButton(
+            //     onPressed: () {
+            //       DatePicker.showDateTimePicker(context,
+            //           showTitleActions: true,
+            //           minTime: DateTime.now(), onChanged: (date) {
+            //         print('change $date');
+            //       }, onConfirm: (date) {
+            //         print('confirm $date');
+            //       }, currentTime: DateTime.now(), locale: LocaleType.id);
+            //     },
+            //     child: Text(
+            //       'show date time picker (Chinese)',
+            //       style: TextStyle(color: Colors.blue),
+            //     )))
           ],
         ),
       );
@@ -158,7 +158,7 @@ class _BookingPageState extends State<BookingPage> {
         margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
         child: TextButton(
           onPressed: () {
-            Navigator.pushNamed(context, '/bookingroom');
+            Navigator.pushNamed(context, '/listruang');
           },
           style: TextButton.styleFrom(
             backgroundColor: primaryColor,
@@ -187,7 +187,6 @@ class _BookingPageState extends State<BookingPage> {
                 startBookingInput(),
                 endBookingInput(),
                 sendButton(),
-                Spacer(),
               ],
             ),
           ),

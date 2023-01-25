@@ -10,7 +10,7 @@ class FeedbackService {
     String roomid,
     String description,
   }) async {
-    var url = '$baseUrl/auth/register';
+    var url = '$baseUrl/feedbacks';
     var headers = {'Content-Type': 'base/form-data'};
     var body = jsonEncode({
       'room_id': roomid,
