@@ -1,16 +1,42 @@
+import 'package:booking_app/provider/auth_provider.dart';
+import 'package:booking_app/provider/notif_provider.dart';
 import 'package:booking_app/themes.dart';
 import 'package:booking_app/widget/notifikasi_card.dart';
 import 'package:booking_app/widget/booking_card.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class NotificationPage extends StatelessWidget {
+class NotificationPage extends StatefulWidget {
+  @override
+  State<NotificationPage> createState() => _NotificationPageState();
+}
+
+class _NotificationPageState extends State<NotificationPage> {
+  @override
+  void initState() {
+    getInit();
+
+    super.initState();
+  }
+
+  getInit() async {
+    AuthProvider authProvider =
+        Provider.of<AuthProvider>(context, listen: false);
+
+    await Provider.of<NotifProvider>(context, listen: false)
+        .notifacation(authProvider.user.token);
+  }
+
   @override
   Widget build(BuildContext context) {
+    NotifProvider notifProvider = Provider.of<NotifProvider>(context);
+
     Widget header() {
       return AppBar(
         backgroundColor: bgColor1,
         centerTitle: true,
         title: Text('Notifikasi'),
+        automaticallyImplyLeading: false,
         elevation: 0,
       );
     }
@@ -69,11 +95,11 @@ class NotificationPage extends StatelessWidget {
         child: Container(
           color: whiteColor,
           child: ListView(
-            children: [
-              NotifCard(),
-              NotifCard(),
-              NotifCard(),
-            ],
+            children: notifProvider.notif
+                .map(
+                  (notification) => NotifCard(notification),
+                )
+                .toList(),
           ),
         ),
       );

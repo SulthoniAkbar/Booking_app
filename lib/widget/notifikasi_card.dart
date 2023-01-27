@@ -1,7 +1,11 @@
+import 'package:booking_app/models/notification_model.dart';
 import 'package:booking_app/themes.dart';
 import 'package:flutter/material.dart';
 
 class NotifCard extends StatelessWidget {
+  final NotificationModel notification;
+  NotifCard(this.notification);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -48,8 +52,8 @@ class NotifCard extends StatelessWidget {
                       height: 6,
                     ),
                     Text(
-                      'Ruang Rapat Flora',
-                      style: primaryTextStyle.copyWith(
+                      notification.room.name,
+                      style: primaryTextStyle3.copyWith(
                         fontSize: 10,
                         fontWeight: semibold,
                       ),
@@ -66,7 +70,7 @@ class NotifCard extends StatelessWidget {
                 width: 5,
               ),
               Text(
-                '20 Apr, 14:04',
+                notification.bookingDate.toString(),
                 style: subtitleTextStyle.copyWith(
                   fontSize: 10,
                 ),

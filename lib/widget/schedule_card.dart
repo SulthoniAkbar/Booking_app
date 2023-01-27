@@ -1,8 +1,14 @@
+import 'package:booking_app/models/schedule_model.dart';
 import 'package:booking_app/pages/booking_room.page.dart';
+import 'package:booking_app/pages/schedule_detail_page.dart';
 import 'package:booking_app/themes.dart';
+import 'package:booking_app/widget/schedule_detail_card.dart';
 import 'package:flutter/material.dart';
 
 class ScheduleCard extends StatelessWidget {
+  final ScheduleModel schedule;
+  ScheduleCard(this.schedule);
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -10,8 +16,8 @@ class ScheduleCard extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-              // builder: (context) => BookingRoomPage(),
-              ),
+            builder: (context) => ScheduleDetailPage(schedule),
+          ),
         );
       },
       child: Container(
@@ -39,7 +45,7 @@ class ScheduleCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Nama Ruang:',
+                    schedule.name,
                     style: primaryTextStyle3.copyWith(
                       fontSize: 12,
                       fontWeight: medium,
@@ -70,7 +76,7 @@ class ScheduleCard extends StatelessWidget {
                     height: 6,
                   ),
                   Text(
-                    '120',
+                    schedule.capacity.toString(),
                     style: primaryTextStyle3.copyWith(
                       fontWeight: semibold,
                       fontSize: 14,
@@ -80,7 +86,7 @@ class ScheduleCard extends StatelessWidget {
                     height: 6,
                   ),
                   Text(
-                    'Lantai 1',
+                    schedule.floor.toString(),
                     style: primaryTextStyle3.copyWith(
                       fontWeight: semibold,
                       fontSize: 14,

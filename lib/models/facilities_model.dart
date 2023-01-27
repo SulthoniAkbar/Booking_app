@@ -2,7 +2,7 @@ import 'package:booking_app/models/facilty_model.dart';
 
 class FacilitiesModel {
   int id;
-  String quantity;
+  int quantity;
   FacilitiesModel facility;
 
   FacilitiesModel({

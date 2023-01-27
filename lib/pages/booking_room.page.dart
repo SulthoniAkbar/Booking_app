@@ -45,7 +45,7 @@ class _BookingRoomPageState extends State<BookingRoomPage> {
                     height: 12,
                   ),
                   Text(
-                    'Hurray :)',
+                    'Yakin',
                     style: primaryTextStyle.copyWith(
                       fontSize: 18,
                       fontWeight: semibold,
@@ -55,8 +55,9 @@ class _BookingRoomPageState extends State<BookingRoomPage> {
                     height: 12,
                   ),
                   Text(
-                    'Item added successfully',
+                    'untuk memesan ruangan ini?',
                     style: secondaryTextStyle,
+                    textAlign: TextAlign.center,
                   ),
                   SizedBox(
                     height: 20,
@@ -66,7 +67,7 @@ class _BookingRoomPageState extends State<BookingRoomPage> {
                     height: 44,
                     child: TextButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, '/notification');
+                        Navigator.pushNamed(context, '/formbooking');
                       },
                       style: TextButton.styleFrom(
                         backgroundColor: primaryColor,
@@ -75,7 +76,7 @@ class _BookingRoomPageState extends State<BookingRoomPage> {
                         ),
                       ),
                       child: Text(
-                        'View My Cart',
+                        'Pesan Sekarang',
                         style: primaryTextStyle.copyWith(
                           fontSize: 16,
                           fontWeight: medium,

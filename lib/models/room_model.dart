@@ -1,8 +1,8 @@
 class RoomModel {
   int id;
   String name;
-  String floor;
-  String capacity;
+  int floor;
+  int capacity;
 
   RoomModel({
     this.id,

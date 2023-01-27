@@ -16,10 +16,22 @@ class BookingCard extends StatelessWidget {
       },
       child: Container(
         margin: EdgeInsets.only(
-          left: defaultMargin,
-          right: defaultMargin,
-          bottom: defaultMargin,
+          top: 20,
+          left: 5,
+          right: 5,
         ),
+        padding: EdgeInsets.only(top: 10, left: 12, bottom: 14, right: 20),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            color: whiteColor,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.5),
+                spreadRadius: 5,
+                blurRadius: 7,
+                offset: Offset(0, 3), // changes position of shadow
+              ),
+            ]),
         child: Row(
           children: [
             ClipRRect(

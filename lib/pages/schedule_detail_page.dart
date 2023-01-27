@@ -1,16 +1,22 @@
+import 'package:booking_app/models/schedule_model.dart';
 import 'package:booking_app/provider/auth_provider.dart';
 import 'package:booking_app/provider/schedule_provider.dart';
+import 'package:booking_app/provider/scheduledetails_provider.dart';
 import 'package:booking_app/themes.dart';
 import 'package:booking_app/widget/schedule_card.dart';
+import 'package:booking_app/widget/schedule_detail_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class SchedulePage extends StatefulWidget {
+class ScheduleDetailPage extends StatefulWidget {
+  final ScheduleModel schedule;
+  ScheduleDetailPage(this.schedule);
+
   @override
-  State<SchedulePage> createState() => _SchedulePageState();
+  State<ScheduleDetailPage> createState() => _ScheduleDetailPageState();
 }
 
-class _SchedulePageState extends State<SchedulePage> {
+class _ScheduleDetailPageState extends State<ScheduleDetailPage> {
   @override
   void initState() {
     getInit();
@@ -28,7 +34,8 @@ class _SchedulePageState extends State<SchedulePage> {
 
   @override
   Widget build(BuildContext context) {
-    ScheduleProvider scheduleProvider = Provider.of<ScheduleProvider>(context);
+    ScheduleProvider scheduleDetailsProvider =
+        Provider.of<ScheduleProvider>(context);
 
     Widget header() {
       return AppBar(
@@ -44,9 +51,9 @@ class _SchedulePageState extends State<SchedulePage> {
         child: Container(
           color: whiteColor,
           child: ListView(
-            children: scheduleProvider.schedule
+            children: scheduleDetailsProvider.schedule
                 .map(
-                  (schedule) => ScheduleCard(schedule),
+                  (schedule) => ScheduleDetailCard(schedule),
                 )
                 .toList(),
           ),

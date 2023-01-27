@@ -12,6 +12,7 @@ class _BookingPageState extends State<BookingPage> {
   @override
   Widget build(BuildContext context) {
     TextEditingController dateController = TextEditingController(text: '');
+
     Widget header() {
       return AppBar(
         backgroundColor: bgColor1,
