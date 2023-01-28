@@ -1,23 +1,22 @@
+import 'package:booking_app/models/user_model.dart';
 import 'package:booking_app/provider/auth_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:booking_app/themes.dart';
 import 'package:provider/provider.dart';
 
-import '../models/user_model.dart';
-
-class EditProfilePage extends StatefulWidget {
-  TextEditingController nameController = TextEditingController(text: '');
-  TextEditingController phoneController = TextEditingController(text: '');
-  TextEditingController devisionController = TextEditingController(text: '');
-  TextEditingController genderController = TextEditingController(text: '');
-  TextEditingController addressController = TextEditingController(text: '');
-  TextEditingController nipController = TextEditingController(text: '');
+class FormBookingPage extends StatefulWidget {
+  // TextEditingController nameController = TextEditingController(text: '');
+  // TextEditingController phoneController = TextEditingController(text: '');
+  // TextEditingController devisionController = TextEditingController(text: '');
+  // TextEditingController genderController = TextEditingController(text: '');
+  // TextEditingController addressController = TextEditingController(text: '');
+  // TextEditingController nipController = TextEditingController(text: '');
 
   @override
-  State<EditProfilePage> createState() => _EditProfilePageState();
+  State<FormBookingPage> createState() => _FormBookingPagePageState();
 }
 
-class _EditProfilePageState extends State<EditProfilePage> {
+class _FormBookingPagePageState extends State<FormBookingPage> {
   @override
   Widget build(BuildContext context) {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
@@ -25,27 +24,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
     Widget header() {
       return AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.close),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
         backgroundColor: bgColor1,
         elevation: 0,
         centerTitle: true,
         title: Text(
-          'Edit Profile',
+          'Pemesanan Ruang Rapat',
         ),
-        actions: [
-          IconButton(
-            icon: Icon(
-              Icons.check,
-              color: primaryColor,
-            ),
-            onPressed: () {},
-          )
-        ],
       );
     }
 
@@ -131,7 +115,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
       );
     }
 
-    Widget address() {
+    Widget capacity() {
       return Container(
         margin: EdgeInsets.only(
           top: 30,
@@ -140,7 +124,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Alamat',
+              'Total Peserta',
               style: primaryTextStyle3.copyWith(
                 fontSize: 14,
                 fontWeight: medium,
@@ -163,6 +147,47 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 style: primaryTextStyle,
                 decoration: InputDecoration.collapsed(
                   hintText: user.address,
+                  hintStyle: subtitleTextStyle,
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
+    Widget nip() {
+      return Container(
+        margin: EdgeInsets.only(
+          top: 30,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'NIP',
+              style: primaryTextStyle3.copyWith(
+                fontSize: 14,
+                fontWeight: medium,
+              ),
+            ),
+            SizedBox(
+              height: 12,
+            ),
+            Container(
+              height: 40,
+              padding: EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 7,
+              ),
+              decoration: BoxDecoration(
+                color: primaryTextColor,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: TextFormField(
+                style: primaryTextStyle3,
+                decoration: InputDecoration.collapsed(
+                  hintText: user.phone,
                   hintStyle: subtitleTextStyle,
                 ),
               ),
@@ -222,24 +247,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
-              width: 70,
-              height: 70,
-              margin: EdgeInsets.only(
-                top: defaultMargin,
-              ),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                image: DecorationImage(
-                  fit: BoxFit.fill,
-                  image: AssetImage('assets/icon_username.png'),
-                  //     image: NetworkImage('assets/splashscreen.png'),
-                ),
-              ),
-            ),
             nameInput(),
             devisi(),
-            address(),
+            nip(),
+            capacity(),
             phonenumber(),
           ],
         ),

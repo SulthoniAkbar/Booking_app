@@ -1,6 +1,6 @@
 import 'package:booking_app/models/schedule_model.dart';
-import 'package:booking_app/pages/booking_room.page.dart';
-import 'package:booking_app/pages/schedule_detail_page.dart';
+import 'package:booking_app/pages/booking/details/booking_room.page.dart';
+import 'package:booking_app/pages/schedule/details/schedule_detail_page.dart';
 import 'package:booking_app/themes.dart';
 import 'package:booking_app/widget/schedule_detail_card.dart';
 import 'package:flutter/material.dart';
@@ -45,7 +45,7 @@ class ScheduleCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    schedule.name,
+                    "Nama Ruang",
                     style: primaryTextStyle3.copyWith(
                       fontSize: 12,
                       fontWeight: medium,
@@ -55,7 +55,7 @@ class ScheduleCard extends StatelessWidget {
                     height: 6,
                   ),
                   Text(
-                    'Ruang Flora',
+                    schedule.name,
                     style: primaryTextStyle3.copyWith(
                       fontSize: 14,
                       fontWeight: semibold,

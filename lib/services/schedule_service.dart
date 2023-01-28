@@ -15,24 +15,38 @@ class ScHeduleService {
 
     print(token);
 
-    var response = await http.get(
-      url,
-      headers: headers,
-    );
+    var response = await http.get(url, headers: headers);
 
     if (response.statusCode == 200) {
-      List data = jsonDecode(response.body)['data']['data'];
-      List<ScheduleModel> schedule = [];
+      var data = jsonDecode(response.body)['data']['data'];
+      List<ScheduleModel> schedules = [];
 
       for (var item in data) {
-        schedule.add(ScheduleModel.fromJson((item)));
+        schedules.add(ScheduleModel.fromJson(item));
       }
-      print(data);
-      print(schedule.toString());
-      return schedule;
+
+      return schedules;
     } else {
-      print(response.body);
-      throw Exception('Gagal get notif');
+      throw Exception('Failed to get schedules');
     }
+    // var response = await http.get(
+    //   url,
+    //   headers: headers,
+    // );
+
+    // if (response.statusCode == 200) {
+    //   List data = jsonDecode(response.body)['data']['data'];
+    //   List<ScheduleModel> schedule = [];
+
+    //   for (var item in data) {
+    //     schedule.add(ScheduleModel.fromJson((item)));
+    //   }
+    //   print(data);
+    //   print(schedule.toString());
+    //   return schedule;
+    // } else {
+    //   print(response.body);
+    //   throw Exception('Gagal get notif');
+    // }
   }
 }

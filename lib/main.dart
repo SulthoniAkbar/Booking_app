@@ -1,14 +1,14 @@
-import 'package:booking_app/pages/booking_page.dart';
-import 'package:booking_app/pages/booking_room.page.dart';
+import 'package:booking_app/pages/booking/booking_page.dart';
+import 'package:booking_app/pages/booking/details/booking_room.page.dart';
 import 'package:booking_app/pages/home/bottomsheet/notification.dart';
 import 'package:booking_app/pages/home/main_page.dart';
-import 'package:booking_app/pages/edit_profile_page.dart';
-import 'package:booking_app/pages/reporting_page.dart';
-import 'package:booking_app/pages/schedule_detail_page.dart';
-import 'package:booking_app/pages/schedule_page.dart';
+import 'package:booking_app/pages/profile/edit_profile_page.dart';
+import 'package:booking_app/pages/feedback/reporting_page.dart';
+import 'package:booking_app/pages/schedule/details/schedule_detail_page.dart';
+import 'package:booking_app/pages/schedule/schedule_page.dart';
 import 'package:booking_app/pages/sign_in_pages.dart';
 import 'package:booking_app/pages/sign_up_pages.dart';
-import 'package:booking_app/pages/listbooking_page.dart';
+import 'package:booking_app/pages/booking/listbooking_page.dart';
 import 'package:booking_app/pages/splashscreen_page.dart';
 import 'package:booking_app/provider/auth_provider.dart';
 import 'package:booking_app/provider/feedback_provider.dart';
@@ -37,9 +37,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => ScheduleProvider(),
         ),
-        ChangeNotifierProvider(
-          create: (context) => ScheduleDetailsProvider(),
-        ),
+        // ChangeNotifierProvider(
+        //   create: (context) => ScheduleDetailsProvider(),
+        // ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -55,7 +55,6 @@ class MyApp extends StatelessWidget {
           '/listruang': (context) => ListBooking(),
           '/bookingroom': (context) => BookingRoomPage(),
           '/schedule': (context) => SchedulePage(),
-          '/scheduledetails': (context) => ScheduleDetailPage(),
         },
       ),
     );

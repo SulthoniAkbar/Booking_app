@@ -1,5 +1,5 @@
 import 'package:booking_app/models/schedule_model.dart';
-import 'package:booking_app/pages/booking_room.page.dart';
+import 'package:booking_app/pages/booking/details/booking_room.page.dart';
 import 'package:booking_app/themes.dart';
 import 'package:flutter/material.dart';
 

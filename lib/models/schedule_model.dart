@@ -25,9 +25,16 @@ class ScheduleModel {
     name = json['name'];
     floor = json['floor'];
     capacity = json['capacity'];
-    facilities = FacilitiesModel.fromJson(json['room_facilities']);
-    facility = FacilityModel.fromJson(json['facility']);
-    bookings = BookingModel.fromJson(json['bookings']);
+    // facilities = FacilitiesModel.fromJson(json['room_facilities']);
+    // facility = FacilityModel.fromJson(json['facility']);
+    // bookings = BookingModel.fromJson(json['bookings']);
+    List<BookingModel> bookingsList = [];
+    if (json['bookings'] != null) {
+      json['bookings'].forEach((booking) {
+        bookingsList.add(BookingModel.fromJson(booking));
+      });
+    }
+    bookings = bookingsList as BookingModel;
   }
 
   Map<String, dynamic> toJson() {

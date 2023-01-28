@@ -1,6 +1,7 @@
 import 'package:booking_app/provider/feedback_provider.dart';
 import 'package:booking_app/themes.dart';
 import 'package:flutter/material.dart';
+// import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 class ReportingPage extends StatefulWidget {
@@ -176,6 +177,34 @@ class _ReportingPageState extends State<ReportingPage> {
         ]),
       );
     }
+//     /// Get from gallery
+//   _getFromGallery() async {
+//     PickedFile pickedFile = await ImagePicker().getImage(
+//       source: ImageSource.gallery,
+//       maxWidth: 1800,
+//       maxHeight: 1800,
+//     );
+//     if (pickedFile != null) {
+//       setState(() {
+//         imageFile = File(pickedFile.path);
+//       });
+//     }
+//   }
+
+//   /// Get from Camera
+//   _getFromCamera() async {
+//     PickedFile pickedFile = await ImagePicker().getImage(
+//       source: ImageSource.camera,
+//       maxWidth: 1800,
+//       maxHeight: 1800,
+//     );
+//     if (pickedFile != null) {
+//       setState(() {
+//         imageFile = File(pickedFile.path);
+//       });
+//     }
+//   }
+// }
 
     Widget sendButton() {
       return Container(

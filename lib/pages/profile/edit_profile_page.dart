@@ -3,21 +3,21 @@ import 'package:flutter/material.dart';
 import 'package:booking_app/themes.dart';
 import 'package:provider/provider.dart';
 
-import '../models/user_model.dart';
+import '../../models/user_model.dart';
 
-class FormBookingPage extends StatefulWidget {
-  // TextEditingController nameController = TextEditingController(text: '');
-  // TextEditingController phoneController = TextEditingController(text: '');
-  // TextEditingController devisionController = TextEditingController(text: '');
-  // TextEditingController genderController = TextEditingController(text: '');
-  // TextEditingController addressController = TextEditingController(text: '');
-  // TextEditingController nipController = TextEditingController(text: '');
+class EditProfilePage extends StatefulWidget {
+  TextEditingController nameController = TextEditingController(text: '');
+  TextEditingController phoneController = TextEditingController(text: '');
+  TextEditingController devisionController = TextEditingController(text: '');
+  TextEditingController genderController = TextEditingController(text: '');
+  TextEditingController addressController = TextEditingController(text: '');
+  TextEditingController nipController = TextEditingController(text: '');
 
   @override
-  State<FormBookingPage> createState() => _FormBookingPagePageState();
+  State<EditProfilePage> createState() => _EditProfilePageState();
 }
 
-class _FormBookingPagePageState extends State<FormBookingPage> {
+class _EditProfilePageState extends State<EditProfilePage> {
   @override
   Widget build(BuildContext context) {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
@@ -25,12 +25,27 @@ class _FormBookingPagePageState extends State<FormBookingPage> {
 
     Widget header() {
       return AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.close),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
         backgroundColor: bgColor1,
         elevation: 0,
         centerTitle: true,
         title: Text(
-          'Pemesanan Ruang Rapat',
+          'Edit Profile',
         ),
+        actions: [
+          IconButton(
+            icon: Icon(
+              Icons.check,
+              color: primaryColor,
+            ),
+            onPressed: () {},
+          )
+        ],
       );
     }
 
@@ -116,7 +131,7 @@ class _FormBookingPagePageState extends State<FormBookingPage> {
       );
     }
 
-    Widget capacity() {
+    Widget address() {
       return Container(
         margin: EdgeInsets.only(
           top: 30,
@@ -125,7 +140,7 @@ class _FormBookingPagePageState extends State<FormBookingPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Total Peserta',
+              'Alamat',
               style: primaryTextStyle3.copyWith(
                 fontSize: 14,
                 fontWeight: medium,
@@ -148,47 +163,6 @@ class _FormBookingPagePageState extends State<FormBookingPage> {
                 style: primaryTextStyle,
                 decoration: InputDecoration.collapsed(
                   hintText: user.address,
-                  hintStyle: subtitleTextStyle,
-                ),
-              ),
-            ),
-          ],
-        ),
-      );
-    }
-
-    Widget nip() {
-      return Container(
-        margin: EdgeInsets.only(
-          top: 30,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'NIP',
-              style: primaryTextStyle3.copyWith(
-                fontSize: 14,
-                fontWeight: medium,
-              ),
-            ),
-            SizedBox(
-              height: 12,
-            ),
-            Container(
-              height: 40,
-              padding: EdgeInsets.symmetric(
-                horizontal: 16,
-                vertical: 7,
-              ),
-              decoration: BoxDecoration(
-                color: primaryTextColor,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: TextFormField(
-                style: primaryTextStyle3,
-                decoration: InputDecoration.collapsed(
-                  hintText: user.phone,
                   hintStyle: subtitleTextStyle,
                 ),
               ),
@@ -248,10 +222,24 @@ class _FormBookingPagePageState extends State<FormBookingPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            Container(
+              width: 70,
+              height: 70,
+              margin: EdgeInsets.only(
+                top: defaultMargin,
+              ),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  fit: BoxFit.fill,
+                  image: AssetImage('assets/icon_username.png'),
+                  //     image: NetworkImage('assets/splashscreen.png'),
+                ),
+              ),
+            ),
             nameInput(),
             devisi(),
-            nip(),
-            capacity(),
+            address(),
             phonenumber(),
           ],
         ),

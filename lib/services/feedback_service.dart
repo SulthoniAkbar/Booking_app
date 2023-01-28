@@ -6,15 +6,17 @@ import 'package:http/http.dart' as http;
 class FeedbackService {
   String baseUrl = 'https://room-booking-apps.herokuapp.com/api';
 
-  Future<FeedbackModel> feedback({
-    String roomid,
-    String description,
-  }) async {
+  Future<FeedbackModel> feedback(
+      {int roomid, String description, String media, String token}) async {
     var url = '$baseUrl/feedbacks';
-    var headers = {'Content-Type': 'base/form-data'};
+    var headers = {
+      'Content-Type': 'base/form-data',
+      'Authorization': 'Bearer ' + token,
+    };
     var body = jsonEncode({
       'room_id': roomid,
       'description': description,
+      'medias[]': media,
     });
 
     var response = await http.post(
@@ -26,7 +28,7 @@ class FeedbackService {
     print(response.body);
 
     if (response.statusCode == 200) {
-      // var data = jsonDecode(response.body)['data'];
+      var data = jsonDecode(response.body)['data'];
       FeedbackModel feedback =
           FeedbackModel.fromJson(jsonDecode(response.body));
       Exception('Feedback Succes');

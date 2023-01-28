@@ -20,7 +20,7 @@ class ListBooking extends StatelessWidget {
           color: whiteColor,
           child: ListView(
             children: [
-              BookingCard(),
+              // BookingCard(),
             ],
           ),
         ),

@@ -31,15 +31,15 @@ class BookingModel {
     id = json['id'];
     idRoom = json['room_id'];
     idMember = json['member_id'];
-    bookingDate = DateTime.parse(json['booking_date']);
-    bookingStartDate = DateTime.parse(json['booking_start_date']);
-    bookingEndDate = DateTime.parse(json['booking_end_date']);
+    bookingDate = DateTime.tryParse(json['booking_date']);
+    bookingStartDate = DateTime.tryParse(json['booking_start_date']);
+    bookingEndDate = DateTime.tryParse(json['booking_end_date']);
     name = json['name'];
     nip = json['nip'];
     phone = json['phone'];
     description = json['description'];
     participant = json['participant'];
-    devisi = double.parse(json['division_id'].toString()) as int;
+    devisi = double.parse(json['division_id']) as int;
   }
 
   Map<String, dynamic> toJson() {
@@ -47,8 +47,8 @@ class BookingModel {
       'name': name,
       'nip': nip,
       'phone': phone,
-      'booking_start_date': phone,
-      'booking_end_date': phone,
+      'booking_start_date': bookingStartDate,
+      'booking_end_date': bookingEndDate,
       'participant': participant,
       'description': description,
       'division_id': devisi.toString(),
