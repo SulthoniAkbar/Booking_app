@@ -3,7 +3,7 @@ import 'package:booking_app/models/facilty_model.dart';
 class FacilitiesModel {
   int id;
   int quantity;
-  FacilitiesModel facility;
+  FacilityModel facility;
 
   FacilitiesModel({
     this.id,
@@ -14,7 +14,7 @@ class FacilitiesModel {
   FacilitiesModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     quantity = json['quantity'];
-    facility = FacilityModel.fromJson(json['facility']) as FacilitiesModel;
+    facility = FacilityModel.fromJson(json['facility']);
   }
 
   Map<String, dynamic> toJson() {

@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+
 class BookingModel {
   int id;
   int idRoom;
@@ -9,7 +11,7 @@ class BookingModel {
   String nip;
   String phone;
   String description;
-  String participant;
+  int participant;
   int devisi;
 
   BookingModel({
@@ -39,7 +41,7 @@ class BookingModel {
     phone = json['phone'];
     description = json['description'];
     participant = json['participant'];
-    devisi = double.parse(json['division_id']) as int;
+    devisi = json['division_id'];
   }
 
   Map<String, dynamic> toJson() {
@@ -51,7 +53,8 @@ class BookingModel {
       'booking_end_date': bookingEndDate,
       'participant': participant,
       'description': description,
-      'division_id': devisi.toString(),
+      'member_id': idMember,
+      'division_id': devisi,
     };
   }
 }

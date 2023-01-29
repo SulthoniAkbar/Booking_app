@@ -124,7 +124,7 @@ class _FormBookingPagePageState extends State<FormBookingPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Total Peserta',
+              'NIP',
               style: primaryTextStyle3.copyWith(
                 fontSize: 14,
                 fontWeight: medium,
@@ -165,7 +165,7 @@ class _FormBookingPagePageState extends State<FormBookingPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'NIP',
+              'No Handphone',
               style: primaryTextStyle3.copyWith(
                 fontSize: 14,
                 fontWeight: medium,
@@ -197,7 +197,7 @@ class _FormBookingPagePageState extends State<FormBookingPage> {
       );
     }
 
-    Widget phonenumber() {
+    Widget startDate() {
       return Container(
         margin: EdgeInsets.only(
           top: 30,
@@ -206,7 +206,130 @@ class _FormBookingPagePageState extends State<FormBookingPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Phone',
+              'Tanggal Mulai',
+              style: primaryTextStyle3.copyWith(
+                fontSize: 14,
+                fontWeight: medium,
+              ),
+            ),
+            SizedBox(
+              height: 12,
+            ),
+            Container(
+              height: 40,
+              padding: EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 7,
+              ),
+              decoration: BoxDecoration(
+                color: primaryTextColor,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: TextFormField(
+                style: primaryTextStyle3,
+                decoration: InputDecoration.collapsed(
+                  hintText: user.phone,
+                  hintStyle: subtitleTextStyle,
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
+    Widget endDate() {
+      return Container(
+        margin: EdgeInsets.only(
+          top: 30,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Tanggal Mulai',
+              style: primaryTextStyle3.copyWith(
+                fontSize: 14,
+                fontWeight: medium,
+              ),
+            ),
+            SizedBox(
+              height: 12,
+            ),
+            Container(
+              height: 40,
+              padding: EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 7,
+              ),
+              decoration: BoxDecoration(
+                color: primaryTextColor,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: TextFormField(
+                style: primaryTextStyle3,
+                decoration: InputDecoration.collapsed(
+                  hintText: user.phone,
+                  hintStyle: subtitleTextStyle,
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
+    Widget participant() {
+      return Container(
+        margin: EdgeInsets.only(
+          top: 30,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Participant',
+              style: primaryTextStyle3.copyWith(
+                fontSize: 14,
+                fontWeight: medium,
+              ),
+            ),
+            SizedBox(
+              height: 12,
+            ),
+            Container(
+              height: 40,
+              padding: EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 7,
+              ),
+              decoration: BoxDecoration(
+                color: primaryTextColor,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: TextFormField(
+                style: primaryTextStyle3,
+                decoration: InputDecoration.collapsed(
+                  hintText: user.phone,
+                  hintStyle: subtitleTextStyle,
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
+    Widget activity() {
+      return Container(
+        margin: EdgeInsets.only(
+          top: 30,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Kegiatan',
               style: primaryTextStyle3.copyWith(
                 fontSize: 14,
                 fontWeight: medium,
@@ -244,14 +367,17 @@ class _FormBookingPagePageState extends State<FormBookingPage> {
         padding: EdgeInsets.symmetric(
           horizontal: defaultMargin,
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+        child: ListView(
+          scrollDirection: Axis.vertical,
           children: [
             nameInput(),
             devisi(),
             nip(),
             capacity(),
-            phonenumber(),
+            startDate(),
+            endDate(),
+            participant(),
+            activity(),
           ],
         ),
       );

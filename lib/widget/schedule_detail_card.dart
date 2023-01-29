@@ -1,5 +1,4 @@
 import 'package:booking_app/models/schedule_model.dart';
-import 'package:booking_app/pages/booking/details/booking_room.page.dart';
 import 'package:booking_app/themes.dart';
 import 'package:flutter/material.dart';
 
@@ -46,7 +45,7 @@ class _ScheduleDetailCardState extends State<ScheduleDetailCard> {
             height: 6,
           ),
           Text(
-            widget.schedule.bookings.name,
+            widget.schedule.bookings[0].name,
             style: primaryTextStyle3.copyWith(
               fontSize: 14,
               fontWeight: semibold,
@@ -67,7 +66,7 @@ class _ScheduleDetailCardState extends State<ScheduleDetailCard> {
             height: 6,
           ),
           Text(
-            widget.schedule.bookings.participant,
+            widget.schedule.bookings[0].participant.toString(),
             style: primaryTextStyle3.copyWith(
               fontWeight: semibold,
               fontSize: 14,
@@ -87,7 +86,7 @@ class _ScheduleDetailCardState extends State<ScheduleDetailCard> {
             height: 6,
           ),
           Text(
-            "${widget.schedule.bookings.bookingStartDate} - ${widget.schedule.bookings.bookingEndDate}",
+            "${widget.schedule.bookings[0].bookingStartDate} - ${widget.schedule.bookings[0].bookingEndDate}",
             style: primaryTextStyle3.copyWith(
               fontWeight: semibold,
               fontSize: 14,

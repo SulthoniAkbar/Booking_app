@@ -1,5 +1,4 @@
 import 'package:booking_app/models/schedule_model.dart';
-import 'package:booking_app/models/notification_model.dart';
 import 'package:booking_app/services/schedule_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

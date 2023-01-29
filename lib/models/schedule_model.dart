@@ -7,45 +7,48 @@ class ScheduleModel {
   String name;
   int floor;
   int capacity;
-  FacilitiesModel facilities;
-  FacilityModel facility;
-  BookingModel bookings;
+  List<FacilitiesModel> facilities;
+  List<BookingModel> bookings;
 
-  ScheduleModel(
-      {this.id,
-      this.name,
-      this.floor,
-      this.capacity,
-      this.facilities,
-      this.facility,
-      this.bookings});
+  ScheduleModel({
+    this.id,
+    this.name,
+    this.floor,
+    this.capacity,
+    this.bookings,
+    this.facilities,
+  });
 
   ScheduleModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     floor = json['floor'];
     capacity = json['capacity'];
-    // facilities = FacilitiesModel.fromJson(json['room_facilities']);
-    // facility = FacilityModel.fromJson(json['facility']);
-    // bookings = BookingModel.fromJson(json['bookings']);
-    List<BookingModel> bookingsList = [];
-    if (json['bookings'] != null) {
-      json['bookings'].forEach((booking) {
-        bookingsList.add(BookingModel.fromJson(booking));
-      });
+    if (json['room_facilities'] != null) {
+      facilities = List<FacilitiesModel>.from(json['room_facilities']
+          .map((roomfacility) => FacilitiesModel.fromJson(roomfacility)));
     }
-    bookings = bookingsList as BookingModel;
+
+    if (json['bookings'] != null) {
+      bookings = List<BookingModel>.from(
+          json['bookings'].map((booking) => BookingModel.fromJson(booking)));
+    }
   }
 
   Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'name': name,
-      'floor': floor,
-      'capacity': capacity,
-      'facilities': facilities.toJson(),
-      'facility': facility.toJson(),
-      'bookings': bookings.toJson(),
-    };
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['name'] = this.name;
+    data['floor'] = this.floor;
+    data['capacity'] = this.capacity;
+    if (this.facilities != null) {
+      data['room_facilities'] =
+          this.facilities.map((facility) => facility.toJson()).toList();
+    }
+    if (this.bookings != null) {
+      data['bookings'] =
+          this.bookings.map((booking) => booking.toJson()).toList();
+    }
+    return data;
   }
 }
