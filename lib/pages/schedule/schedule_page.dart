@@ -44,6 +44,7 @@ class _SchedulePageState extends State<SchedulePage> {
         child: Container(
           color: whiteColor,
           child: ListView(
+            scrollDirection: Axis.vertical,
             children: scheduleProvider.schedule
                 .map(
                   (schedule) => ScheduleCard(schedule),

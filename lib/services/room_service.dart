@@ -32,7 +32,6 @@ class AuthService {
     if (response.statusCode == 200) {
       UserModel user = UserModel.fromJson(jsonDecode(response.body));
       Exception('Update Succes');
-
       return user;
     } else {
       throw Exception('Gagal Update');

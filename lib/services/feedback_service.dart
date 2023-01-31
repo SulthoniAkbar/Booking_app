@@ -7,7 +7,7 @@ class FeedbackService {
   String baseUrl = 'https://room-booking-apps.herokuapp.com/api';
 
   Future<FeedbackModel> feedback(
-      {int roomid, String description, String media, String token}) async {
+      {String roomid, String description, String media, String token}) async {
     var url = '$baseUrl/feedbacks';
     var headers = {
       'Content-Type': 'base/form-data',

@@ -1,9 +1,10 @@
+import 'package:booking_app/models/booking_model.dart';
 import 'package:booking_app/models/schedule_model.dart';
 import 'package:booking_app/themes.dart';
 import 'package:flutter/material.dart';
 
 class ScheduleDetailCard extends StatefulWidget {
-  final ScheduleModel schedule;
+  final BookingModel schedule;
   ScheduleDetailCard(this.schedule);
 
   @override
@@ -45,7 +46,7 @@ class _ScheduleDetailCardState extends State<ScheduleDetailCard> {
             height: 6,
           ),
           Text(
-            widget.schedule.bookings[0].name,
+            widget.schedule.name,
             style: primaryTextStyle3.copyWith(
               fontSize: 14,
               fontWeight: semibold,
@@ -66,7 +67,7 @@ class _ScheduleDetailCardState extends State<ScheduleDetailCard> {
             height: 6,
           ),
           Text(
-            widget.schedule.bookings[0].participant.toString(),
+            widget.schedule.participant.toString(),
             style: primaryTextStyle3.copyWith(
               fontWeight: semibold,
               fontSize: 14,
@@ -86,7 +87,7 @@ class _ScheduleDetailCardState extends State<ScheduleDetailCard> {
             height: 6,
           ),
           Text(
-            "${widget.schedule.bookings[0].bookingStartDate} - ${widget.schedule.bookings[0].bookingEndDate}",
+            "${widget.schedule.bookingStartDate} - ${widget.schedule.bookingEndDate}",
             style: primaryTextStyle3.copyWith(
               fontWeight: semibold,
               fontSize: 14,

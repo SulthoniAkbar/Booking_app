@@ -1,7 +1,9 @@
+import 'dart:io';
+
 import 'package:booking_app/provider/feedback_provider.dart';
 import 'package:booking_app/themes.dart';
 import 'package:flutter/material.dart';
-// import 'package:image_picker/image_picker.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 class ReportingPage extends StatefulWidget {
@@ -10,6 +12,7 @@ class ReportingPage extends StatefulWidget {
 }
 
 class _ReportingPageState extends State<ReportingPage> {
+  File _image;
   TextEditingController roomidController = TextEditingController(text: '');
   TextEditingController descriptionController = TextEditingController(text: '');
   @override
@@ -157,54 +160,48 @@ class _ReportingPageState extends State<ReportingPage> {
       );
     }
 
-    Widget imageInput() {
+    Widget _imagePicker() {
       return Container(
         margin: EdgeInsets.symmetric(
-          horizontal: 30,
+          vertical: 10,
+          horizontal: 20,
         ),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text(
-            'Foto',
-            style: primaryTextStyle3.copyWith(
-              fontSize: 16,
-              fontWeight: medium,
+        child: Container(
+          height: 50,
+          padding: EdgeInsets.symmetric(
+            horizontal: 16,
+          ),
+          decoration: BoxDecoration(
+            color: primaryColor,
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Center(
+            child: Row(
+              children: [
+                Expanded(
+                  child: FlatButton(
+                    child: Text(
+                      'Pilih Gambar',
+                      style: primaryTextStyle3.copyWith(
+                          fontSize: 14,
+                          fontWeight: medium,
+                          color: Colors.white),
+                    ),
+                    onPressed: () async {
+                      var image = await ImagePicker.pickImage(
+                          source: ImageSource.gallery);
+                      setState(() {
+                        _image = image as File;
+                      });
+                    },
+                  ),
+                )
+              ],
             ),
           ),
-          SizedBox(
-            height: 12,
-          ),
-          Image.asset('assets/add_image.png', width: 100, height: 100)
-        ]),
+        ),
       );
     }
-//     /// Get from gallery
-//   _getFromGallery() async {
-//     PickedFile pickedFile = await ImagePicker().getImage(
-//       source: ImageSource.gallery,
-//       maxWidth: 1800,
-//       maxHeight: 1800,
-//     );
-//     if (pickedFile != null) {
-//       setState(() {
-//         imageFile = File(pickedFile.path);
-//       });
-//     }
-//   }
-
-//   /// Get from Camera
-//   _getFromCamera() async {
-//     PickedFile pickedFile = await ImagePicker().getImage(
-//       source: ImageSource.camera,
-//       maxWidth: 1800,
-//       maxHeight: 1800,
-//     );
-//     if (pickedFile != null) {
-//       setState(() {
-//         imageFile = File(pickedFile.path);
-//       });
-//     }
-//   }
-// }
 
     Widget sendButton() {
       return Container(
@@ -242,9 +239,8 @@ class _ReportingPageState extends State<ReportingPage> {
                 header(),
                 roomInput(),
                 deskripsiInput(),
-                imageInput(),
+                _imagePicker(),
                 sendButton(),
-                Spacer(),
               ],
             ),
           ),

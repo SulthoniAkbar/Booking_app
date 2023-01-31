@@ -15,6 +15,7 @@ import 'package:booking_app/provider/feedback_provider.dart';
 import 'package:booking_app/provider/notif_provider.dart';
 import 'package:booking_app/provider/schedule_provider.dart';
 import 'package:booking_app/provider/scheduledetails_provider.dart';
+import 'package:booking_app/provider/search_room_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -37,9 +38,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => ScheduleProvider(),
         ),
-        // ChangeNotifierProvider(
-        //   create: (context) => ScheduleDetailsProvider(),
-        // ),
+        ChangeNotifierProvider(
+          create: (context) => SearchProvider(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

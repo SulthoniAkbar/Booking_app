@@ -29,24 +29,5 @@ class ScHeduleService {
     } else {
       throw Exception('Failed to get schedules');
     }
-    // var response = await http.get(
-    //   url,
-    //   headers: headers,
-    // );
-
-    // if (response.statusCode == 200) {
-    //   List data = jsonDecode(response.body)['data']['data'];
-    //   List<ScheduleModel> schedule = [];
-
-    //   for (var item in data) {
-    //     schedule.add(ScheduleModel.fromJson((item)));
-    //   }
-    //   print(data);
-    //   print(schedule.toString());
-    //   return schedule;
-    // } else {
-    //   print(response.body);
-    //   throw Exception('Gagal get notif');
-    // }
   }
 }

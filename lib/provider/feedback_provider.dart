@@ -17,13 +17,12 @@ class FeedbackProvider with ChangeNotifier {
   Future<bool> feedback({
     String roomid,
     String description,
+    String media,
     String token,
   }) async {
     try {
-      FeedbackModel feedback = await FeedbackService().feedback(
-        // roomid: roomid,
-        description: description,
-      );
+      FeedbackModel feedback = await FeedbackService()
+          .feedback(roomid: roomid, description: description, media: media);
 
       _feedback = feedback;
       return true;

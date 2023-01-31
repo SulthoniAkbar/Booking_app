@@ -1,37 +1,39 @@
-// import 'dart:convert';
-// import 'package:booking_app/models/booking_model.dart';
-// import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+import 'package:booking_app/models/schedule_model.dart';
 
-// class SearchService {
-//   String baseUrl = 'https://room-booking-apps.herokuapp.com/api';
-  
-//   Future<BookingModel> login({
-//     String bookingstart,
-//     String bookingend,
-//   }) async {
-//     var url = '$baseUrl/rooms/search-available';
-//     var headers = {'Content-Type': 'application/json'};
-//     var body = jsonEncode({
-//       'email': bookingstart,
-//       'password': bookingend,
-//     });
-    
-//     var response = await http.post(
-//       url,
-//       headers: headers,
-//       body: body,
-//     );
+class SearchService {
+  String baseUrl = 'https://room-booking-apps.herokuapp.com/api';
 
-//     print(response.body);
+  Future<List<ScheduleModel>> searchroom(
+      {DateTime startdate, DateTime enddate, String token}) async {
+    var url = '$baseUrl/rooms/search-available';
+    var headers = {
+      'Content-Type': 'base/form-data',
+      'Authorization': 'Bearer ' + token
+    };
+    var body = jsonEncode({
+      'start_date': startdate,
+      'end_date': enddate,
+    });
+    var response = await http.post(
+      url,
+      headers: headers,
+      body: body,
+    );
+    print(response.body);
+    if (response.statusCode == 200) {
+      var data = jsonDecode(response.body)['data'];
+      List<ScheduleModel> schedules = [];
 
-// //     if (response.statusCode == 200) {
-// //       // var data = jsonDecode(response.body)['data'];
-// //       // UserModel user = UserModel.fromJson(data['user']);
-// //       user.token = data['access_token'];
+      for (var item in data) {
+        schedules.add(ScheduleModel.fromJson(item));
+      }
+      Exception('Berhasil Login');
 
-// //       return user;
-// //     } else {
-// //       throw Exception('Gagal Login');
-// //     }
-// //   }
-// // }
+      return schedules;
+    } else {
+      throw Exception('Gagal Login');
+    }
+  }
+}

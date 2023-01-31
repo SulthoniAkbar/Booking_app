@@ -1,30 +1,31 @@
-// import 'package:booking_app/models/booking_model.dart';
-// import 'package:flutter/cupertino.dart';
+import 'package:booking_app/models/schedule_model.dart';
+import 'package:booking_app/services/search_room_service.dart';
+import 'package:flutter/material.dart';
 
-// class SearchProvider with ChangeNotifier {
-//   BookingModel _room;
-//   BookingModel get room => _room;
+class SearchProvider with ChangeNotifier {
+  ScheduleModel _search;
 
-//   set user(BookingModel room) {
-//     _room = room;
-//     notifyListeners();
-//   }
+  ScheduleModel get search => _search;
 
-//   Future<bool> login({
-//     String email,
-//     String password,
-//   }) async {
-//     try {
-//       BookingModel user = await AuthService().login(
-//         email: email,
-//         password: password,
-//       );
+  set search(ScheduleModel search) {
+    _search = search;
+    notifyListeners();
+  }
 
-//       _user = user;
-//       return true;
-//     } catch (e) {
-//       print(e);
-//       return false;
-//     }
-//   }
-// }
+  Future<bool> searchroom({
+    DateTime startDate,
+    DateTime endDate,
+  }) async {
+    try {
+      List<ScheduleModel> searchroom = await SearchService().searchroom(
+        startdate: startDate,
+        enddate: endDate,
+      );
+      _search = search;
+      return true;
+    } catch (e) {
+      print(e);
+      return false;
+    }
+  }
+}

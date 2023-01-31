@@ -1,7 +1,9 @@
+import 'package:booking_app/provider/search_room_provider.dart';
 import 'package:booking_app/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 class BookingPage extends StatefulWidget {
   @override
@@ -9,9 +11,33 @@ class BookingPage extends StatefulWidget {
 }
 
 class _BookingPageState extends State<BookingPage> {
+  DateTime startdate;
+  DateTime enddate;
+  TextEditingController startDateController = TextEditingController(text: '');
+  TextEditingController endDateController = TextEditingController(text: '');
+
   @override
   Widget build(BuildContext context) {
-    TextEditingController dateController = TextEditingController(text: '');
+    SearchProvider searchProvider = Provider.of<SearchProvider>(context);
+
+    handleSignUp() async {
+      if (await searchProvider.searchroom(
+        startDate: startdate,
+        endDate: enddate,
+      )) {
+        Navigator.pushNamed(context, '/home');
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: alertColor,
+            content: Text(
+              'Gagal Register',
+              textAlign: TextAlign.center,
+            ),
+          ),
+        );
+      }
+    }
 
     Widget header() {
       return AppBar(
@@ -23,132 +49,80 @@ class _BookingPageState extends State<BookingPage> {
     }
 
     Widget startBookingInput() {
-      return Container(
-        margin: EdgeInsets.symmetric(
-          vertical: 10,
-          horizontal: 20,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Tangga Mulai',
-              style: primaryTextStyle3.copyWith(
-                fontSize: 16,
-                fontWeight: medium,
-              ),
+      return Column(
+        children: [
+          Text(
+            'Mulai',
+            style: primaryTextStyle3,
+          ),
+          SizedBox(
+            height: 5,
+          ),
+          Container(
+            height: 50,
+            width: double.infinity,
+            decoration: BoxDecoration(
+                border: Border.all(color: secondaryColor),
+                borderRadius: BorderRadius.circular(12)),
+            child: TextField(
+              controller: startDateController,
+              onTap: () {
+                DatePicker.showDateTimePicker(context,
+                    theme: DatePickerTheme(
+                      containerHeight: 210.0,
+                    ),
+                    showTitleActions: true, onConfirm: (date) {
+                  print('confirm $date');
+                  startDateController.text =
+                      '${date.year}-${date.month}-${date.day} ${date.hour}:${date.minute}:${date.second}';
+                }, currentTime: DateTime.now(), locale: LocaleType.en);
+              },
+              decoration: InputDecoration(
+                  border: InputBorder.none,
+                  contentPadding: EdgeInsets.symmetric(
+                      horizontal: defaultMargin, vertical: 10)),
             ),
-            SizedBox(
-              height: 12,
-            ),
-            Container(
-              height: 40,
-              padding: EdgeInsets.symmetric(
-                horizontal: 16,
-                vertical: 7,
-              ),
-              decoration: BoxDecoration(
-                color: primaryTextColor,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: TextFormField(
-                controller: dateController,
-                style: primaryTextStyle3,
-                decoration: InputDecoration(
-                  icon: Icon(Icons.calendar_today),
-                  hintText: "Enter Date",
-                ),
-                readOnly: true,
-                onTap: () async {
-                  DatePicker.showDateTimePicker(context,
-                          showTitleActions: true,
-                          minTime: DateTime.now(), onChanged: (date) {
-                    print('change $date');
-                  }, onConfirm: (date) {
-                    print('confirm $date');
-                  }, currentTime: DateTime.now(), locale: LocaleType.id)
-                      .toString();
-                },
-              ),
-            ),
-            // child: TextButton(
-            //     onPressed: () {
-            //       DatePicker.showDateTimePicker(context,
-            //           showTitleActions: true,
-            //           minTime: DateTime.now(), onChanged: (date) {
-            //         print('change $date');
-            //       }, onConfirm: (date) {
-            //         print('confirm $date');
-            //       }, currentTime: DateTime.now(), locale: LocaleType.id);
-            //     },
-            //     child: Text(
-            //       'show date time picker (Chinese)',
-            //       style: TextStyle(color: Colors.blue),
-            //     )))
-          ],
-        ),
+          ),
+        ],
       );
     }
 
     Widget endBookingInput() {
-      return Container(
-        margin: EdgeInsets.symmetric(
-          vertical: 10,
-          horizontal: 20,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Tangga Mulai',
-              style: primaryTextStyle3.copyWith(
-                fontSize: 16,
-                fontWeight: medium,
-              ),
+      return Column(
+        children: [
+          Text(
+            'Selesai',
+            style: primaryTextStyle3,
+          ),
+          SizedBox(
+            height: 5,
+          ),
+          Container(
+            height: 50,
+            width: double.infinity,
+            decoration: BoxDecoration(
+                border: Border.all(color: secondaryColor),
+                borderRadius: BorderRadius.circular(12)),
+            child: TextField(
+              controller: endDateController,
+              onTap: () {
+                DatePicker.showDateTimePicker(context,
+                    theme: DatePickerTheme(
+                      containerHeight: 210.0,
+                    ),
+                    showTitleActions: true, onConfirm: (date) {
+                  print('confirm $date');
+                  endDateController.text =
+                      '${date.year}-${date.month}-${date.day} ${date.hour}:${date.minute}:${date.second}';
+                }, currentTime: DateTime.now(), locale: LocaleType.en);
+              },
+              decoration: InputDecoration(
+                  border: InputBorder.none,
+                  contentPadding: EdgeInsets.symmetric(
+                      horizontal: defaultMargin, vertical: 10)),
             ),
-            SizedBox(
-              height: 12,
-            ),
-            Container(
-              height: 40,
-              padding: EdgeInsets.symmetric(
-                horizontal: 16,
-                vertical: 7,
-              ),
-              decoration: BoxDecoration(
-                color: primaryTextColor,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: TextFormField(
-                controller: dateController,
-                style: primaryTextStyle3,
-                decoration: InputDecoration(
-                  icon: Icon(Icons.calendar_today),
-                  hintText: "Enter Date",
-                ),
-                readOnly: true,
-                onTap: () async {
-                  DateTime pickedDate = await showDatePicker(
-                    context: context, //context of current state
-                    initialDate: DateTime.now(),
-                    firstDate: DateTime(
-                        2000), //DateTime.now() - not to allow to choose before today.
-                    lastDate: DateTime(2101),
-                  );
-                  if (pickedDate != null) {
-                    String formattedDate =
-                        DateFormat('yyyy-MM-dd').format(pickedDate);
-                    setState(() {
-                      dateController.text = pickedDate.toString();
-                    });
-                  } else {
-                    print("Date is not selected");
-                  }
-                },
-              ),
-            )
-          ],
-        ),
+          ),
+        ],
       );
     }
 

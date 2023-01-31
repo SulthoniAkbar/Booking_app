@@ -2,6 +2,7 @@ import 'package:booking_app/models/schedule_model.dart';
 import 'package:booking_app/provider/auth_provider.dart';
 import 'package:booking_app/provider/schedule_provider.dart';
 import 'package:booking_app/provider/scheduledetails_provider.dart';
+import 'package:booking_app/services/scheduledetails_service.dart';
 import 'package:booking_app/themes.dart';
 import 'package:booking_app/widget/schedule_card.dart';
 import 'package:booking_app/widget/schedule_detail_card.dart';
@@ -24,19 +25,10 @@ class _ScheduleDetailPageState extends State<ScheduleDetailPage> {
     super.initState();
   }
 
-  getInit() async {
-    AuthProvider authProvider =
-        Provider.of<AuthProvider>(context, listen: false);
-
-    await Provider.of<ScheduleProvider>(context, listen: false)
-        .schedules(authProvider.user.token);
-  }
+  getInit() async {}
 
   @override
   Widget build(BuildContext context) {
-    ScheduleProvider scheduleDetailsProvider =
-        Provider.of<ScheduleProvider>(context);
-
     Widget header() {
       return AppBar(
         backgroundColor: bgColor1,
@@ -51,9 +43,9 @@ class _ScheduleDetailPageState extends State<ScheduleDetailPage> {
         child: Container(
           color: whiteColor,
           child: ListView(
-            children: scheduleDetailsProvider.schedule
+            children: widget.schedule.bookings
                 .map(
-                  (schedule) => ScheduleDetailCard(schedule),
+                  (bookings) => ScheduleDetailCard(bookings),
                 )
                 .toList(),
           ),
