@@ -12,12 +12,11 @@ class SearchProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<bool> searchroom({
-    DateTime startDate,
-    DateTime endDate,
-  }) async {
+  Future<bool> searchroom(
+      {DateTime startDate, DateTime endDate, String token}) async {
     try {
       List<ScheduleModel> searchroom = await SearchService().searchroom(
+        token: token,
         startdate: startDate,
         enddate: endDate,
       );

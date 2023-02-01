@@ -1,3 +1,4 @@
+import 'package:booking_app/provider/auth_provider.dart';
 import 'package:booking_app/provider/search_room_provider.dart';
 import 'package:booking_app/themes.dart';
 import 'package:flutter/material.dart';
@@ -18,20 +19,25 @@ class _BookingPageState extends State<BookingPage> {
 
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider =
+        Provider.of<AuthProvider>(context, listen: false);
     SearchProvider searchProvider = Provider.of<SearchProvider>(context);
 
-    handleSignUp() async {
+    getInit() async {}
+
+    handleSend() async {
       if (await searchProvider.searchroom(
-        startDate: startdate,
-        endDate: enddate,
+        token: authProvider.user.token,
+        startDate: DateTime.parse(startDateController.text),
+        endDate: DateTime.parse(endDateController.text),
       )) {
-        Navigator.pushNamed(context, '/home');
+        Navigator.pushNamed(context, '/lsitruang');
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             backgroundColor: alertColor,
             content: Text(
-              'Gagal Register',
+              'Gagal',
               textAlign: TextAlign.center,
             ),
           ),
@@ -72,9 +78,7 @@ class _BookingPageState extends State<BookingPage> {
                       containerHeight: 210.0,
                     ),
                     showTitleActions: true, onConfirm: (date) {
-                  print('confirm $date');
-                  startDateController.text =
-                      '${date.year}-${date.month}-${date.day} ${date.hour}:${date.minute}:${date.second}';
+                  startDateController.text = date.toIso8601String();
                 }, currentTime: DateTime.now(), locale: LocaleType.en);
               },
               decoration: InputDecoration(
@@ -111,9 +115,7 @@ class _BookingPageState extends State<BookingPage> {
                       containerHeight: 210.0,
                     ),
                     showTitleActions: true, onConfirm: (date) {
-                  print('confirm $date');
-                  endDateController.text =
-                      '${date.year}-${date.month}-${date.day} ${date.hour}:${date.minute}:${date.second}';
+                  endDateController.text = date.toIso8601String();
                 }, currentTime: DateTime.now(), locale: LocaleType.en);
               },
               decoration: InputDecoration(
@@ -132,9 +134,8 @@ class _BookingPageState extends State<BookingPage> {
         width: double.infinity,
         margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
         child: TextButton(
-          onPressed: () {
-            Navigator.pushNamed(context, '/listruang');
-          },
+          onPressed: handleSend,
+          // Navigator.pushNamed(context, '/listruang');
           style: TextButton.styleFrom(
             backgroundColor: primaryColor,
             shape:
@@ -154,9 +155,6 @@ class _BookingPageState extends State<BookingPage> {
         resizeToAvoidBottomInset: false,
         body: SafeArea(
           child: Container(
-            // margin: EdgeInsets.symmetric(
-            //   horizontal: defaultMargin,
-            // ),
             child: Column(
               children: [
                 startBookingInput(),

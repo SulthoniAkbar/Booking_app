@@ -30,7 +30,7 @@ class SearchService {
         schedules.add(ScheduleModel.fromJson(item));
       }
       Exception('Berhasil Login');
-
+      print(schedules);
       return schedules;
     } else {
       throw Exception('Gagal Login');

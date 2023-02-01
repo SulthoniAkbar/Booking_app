@@ -7,6 +7,7 @@ class ScheduleModel {
   String name;
   int floor;
   int capacity;
+  String image;
   List<FacilitiesModel> facilities;
   List<BookingModel> bookings;
 
@@ -15,6 +16,7 @@ class ScheduleModel {
     this.name,
     this.floor,
     this.capacity,
+    this.image,
     this.bookings,
     this.facilities,
   });
@@ -23,6 +25,7 @@ class ScheduleModel {
     id = json['id'];
     name = json['name'];
     floor = json['floor'];
+    image = json['image'];
     capacity = json['capacity'];
     if (json['room_facilities'] != null) {
       facilities = List<FacilitiesModel>.from(json['room_facilities']
@@ -40,6 +43,7 @@ class ScheduleModel {
     data['id'] = this.id;
     data['name'] = this.name;
     data['floor'] = this.floor;
+    data['image'] = this.image;
     data['capacity'] = this.capacity;
     if (this.facilities != null) {
       data['room_facilities'] =

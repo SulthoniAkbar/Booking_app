@@ -16,7 +16,7 @@ class FeedbackService {
     var body = jsonEncode({
       'room_id': roomid,
       'description': description,
-      'medias[]': media,
+      'medias': media,
     });
 
     var response = await http.post(
@@ -29,9 +29,7 @@ class FeedbackService {
 
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body)['data'];
-      FeedbackModel feedback =
-          FeedbackModel.fromJson(jsonDecode(response.body));
-      Exception('Feedback Succes');
+      FeedbackModel feedback = FeedbackModel.fromJson(data);
 
       return feedback;
     } else {
