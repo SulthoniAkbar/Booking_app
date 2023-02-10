@@ -5,8 +5,8 @@ class BookingModel {
   int idRoom;
   int idMember;
   DateTime bookingDate;
-  DateTime bookingStartDate;
-  DateTime bookingEndDate;
+  String bookingStartDate;
+  String bookingEndDate;
   String name;
   String nip;
   String phone;
@@ -34,8 +34,8 @@ class BookingModel {
     idRoom = json['room_id'];
     idMember = json['member_id'];
     bookingDate = DateTime.tryParse(json['booking_date']);
-    bookingStartDate = DateTime.tryParse(json['booking_start_date']);
-    bookingEndDate = DateTime.tryParse(json['booking_end_date']);
+    bookingStartDate = json['booking_start_date'];
+    bookingEndDate = json['booking_end_date'];
     name = json['name'];
     nip = json['nip'];
     phone = json['phone'];

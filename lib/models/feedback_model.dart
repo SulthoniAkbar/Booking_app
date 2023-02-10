@@ -2,28 +2,31 @@ import 'package:booking_app/models/media_model.dart';
 
 class FeedbackModel {
   int id;
-  int roomid;
+  int room_id;
   String description;
-  MediasModel medias;
+  List<MediasModel> medias;
 
-  FeedbackModel({this.id, this.roomid, this.description, this.medias});
+  FeedbackModel({this.id, this.room_id, this.description, this.medias});
 
   FeedbackModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    roomid = json['room_id'];
+    room_id = json['room_id'];
     description = json['description'];
     if (json['medias'] != null) {
-      medias = List<MediasModel>() as MediasModel;
+      medias = List<MediasModel>();
       json['medias'].forEach((v) {
         medias.add(MediasModel.fromJson(v));
       });
+    } else {
+      medias = [];
     }
   }
   Map<String, dynamic> toJson() {
     return {
       'id': id,
-      'room_id': roomid,
+      'room_id': room_id,
       'description': description,
+      'medias': medias.map((media) => media.toJson()).toList()
     };
   }
 }

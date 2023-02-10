@@ -2,7 +2,7 @@ import 'package:booking_app/services/booking_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:booking_app/models/booking_model.dart';
 
-class AuthProvider with ChangeNotifier {
+class BookingProvider with ChangeNotifier {
   BookingModel _booking;
 
   BookingModel get booking => _booking;

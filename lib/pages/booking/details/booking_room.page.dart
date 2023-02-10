@@ -1,6 +1,9 @@
+import 'package:booking_app/provider/auth_provider.dart';
+import 'package:booking_app/provider/booking_room_provider.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:booking_app/themes.dart';
+import 'package:provider/provider.dart';
 
 class BookingRoomPage extends StatefulWidget {
   @override
@@ -9,6 +12,21 @@ class BookingRoomPage extends StatefulWidget {
 
 class _BookingRoomPageState extends State<BookingRoomPage> {
   int currentIndex = 0;
+
+  @override
+  void initState() {
+    getInit();
+
+    super.initState();
+  }
+
+  getInit() async {
+    AuthProvider authProvider =
+        Provider.of<AuthProvider>(context, listen: false);
+
+    // await Provider.of<BookingRoomProvider>(context, listen: false)
+    //     .schedules(authProvider.user.token);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,10 +55,6 @@ class _BookingRoomPageState extends State<BookingRoomPage> {
                       ),
                     ),
                   ),
-                  // Image.asset(
-                  //   'assets/icon_success.png',
-                  //   width: 100,
-                  // ),
                   SizedBox(
                     height: 12,
                   ),

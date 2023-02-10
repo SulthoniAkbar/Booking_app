@@ -79,7 +79,7 @@ class _BookingPageState extends State<BookingPage> {
                     ),
                     showTitleActions: true, onConfirm: (date) {
                   startDateController.text = date.toIso8601String();
-                }, currentTime: DateTime.now(), locale: LocaleType.en);
+                }, currentTime: DateTime.now(), locale: LocaleType.id);
               },
               decoration: InputDecoration(
                   border: InputBorder.none,
@@ -116,7 +116,7 @@ class _BookingPageState extends State<BookingPage> {
                     ),
                     showTitleActions: true, onConfirm: (date) {
                   endDateController.text = date.toIso8601String();
-                }, currentTime: DateTime.now(), locale: LocaleType.en);
+                }, currentTime: DateTime.now(), locale: LocaleType.id);
               },
               decoration: InputDecoration(
                   border: InputBorder.none,

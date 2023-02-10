@@ -14,9 +14,13 @@ class BookingService {
       String divisionid,
       String gender,
       String address,
-      String nip}) async {
+      String nip,
+      String token}) async {
     var url = '$baseUrl/booking';
-    var headers = {'Content-Type': 'base/form-data'};
+    var headers = {
+      'Content-Type': 'base/form-data',
+      'Authorization': 'Bearer ' + token
+    };
     var body = jsonEncode({
       'name': name,
       'email': email,
@@ -36,13 +40,12 @@ class BookingService {
     );
 
     print(response.body);
-
+    Map<String, dynamic> data = jsonDecode(response.body);
     if (response.statusCode == 200) {
-      // var data = jsonDecode(response.body)['data'];
+      var data = jsonDecode(response.body)['data'];
       BookingModel booking = BookingModel.fromJson(
         jsonDecode(response.body),
       );
-
       Exception('Berhasil Booking');
 
       return booking;

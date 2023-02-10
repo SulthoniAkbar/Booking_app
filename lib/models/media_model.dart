@@ -18,6 +18,4 @@ class MediasModel {
       'attachment': attachment,
     };
   }
-
-  void add(MediasModel mediasModel) {}
 }

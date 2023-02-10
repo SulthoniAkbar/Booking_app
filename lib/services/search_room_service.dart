@@ -6,7 +6,7 @@ class SearchService {
   String baseUrl = 'https://room-booking-apps.herokuapp.com/api';
 
   Future<List<ScheduleModel>> searchroom(
-      {DateTime startdate, DateTime enddate, String token}) async {
+      {String startdate, String enddate, String token}) async {
     var url = '$baseUrl/rooms/search-available';
     var headers = {
       'Content-Type': 'base/form-data',
@@ -22,6 +22,7 @@ class SearchService {
       body: body,
     );
     print(response.body);
+
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body)['data'];
       List<ScheduleModel> schedules = [];
