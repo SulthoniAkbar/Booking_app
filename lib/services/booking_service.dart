@@ -4,7 +4,7 @@ import 'package:booking_app/models/user_model.dart';
 import 'package:http/http.dart' as http;
 
 class BookingService {
-  String baseUrl = 'https://room-booking-apps.herokuapp.com/api';
+  String baseUrl = 'https://akbar.green-apps.xyz/api';
   Future<BookingModel> booking(
       {String name,
       String email,

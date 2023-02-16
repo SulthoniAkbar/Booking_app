@@ -3,7 +3,7 @@ import 'package:booking_app/models/notification_model.dart';
 import 'package:http/http.dart' as http;
 
 class NotifService {
-  String baseUrl = 'https://room-booking-apps.herokuapp.com/api';
+  String baseUrl = 'https://akbar.green-apps.xyz/api';
 
   Future<List<NotificationModel>> notification(String token) async {
     var url = '$baseUrl/booking';

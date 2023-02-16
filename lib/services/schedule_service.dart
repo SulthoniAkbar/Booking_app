@@ -4,7 +4,7 @@ import 'package:booking_app/models/schedule_model.dart';
 import 'package:http/http.dart' as http;
 
 class ScHeduleService {
-  String baseUrl = 'https://room-booking-apps.herokuapp.com/api';
+  String baseUrl = 'https://akbar.green-apps.xyz/api';
 
   Future<List<ScheduleModel>> schedule(String token) async {
     var url = '$baseUrl/rooms/schedules';

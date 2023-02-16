@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class FeedbackService {
-  String baseUrl = 'https://room-booking-apps.herokuapp.com/api';
+  String baseUrl = 'https://akbar.green-apps.xyz/api';
 
   Future<FeedbackModel> feedback(
       {String roomid, String description, String media, String token}) async {
