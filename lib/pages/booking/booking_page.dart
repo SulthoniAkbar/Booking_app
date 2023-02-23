@@ -26,18 +26,49 @@ class _BookingPageState extends State<BookingPage> {
     getInit() async {}
 
     handleSend() async {
-      if (await searchProvider.searchroom(
-        token: authProvider.user.token,
-        startDate: DateTime.parse(startDateController.text),
-        endDate: DateTime.parse(endDateController.text),
-      )) {
-        Navigator.pushNamed(context, '/lsitruang');
+      if (startDateController.text.isNotEmpty &&
+          endDateController.text.isNotEmpty) {
+        try {
+          DateTime startDateTime =
+              DateFormat("yyyy-MM-dd HH:mm:ss").parse(startDateController.text);
+          DateTime endDateTime =
+              DateFormat("yyyy-MM-dd HH:mm:ss").parse(endDateController.text);
+
+          if (await searchProvider.searchroom(
+            token: authProvider.user.token,
+            startDate: startDateTime,
+            endDate: endDateTime,
+          )) {
+            Navigator.pushNamed(context, '/listruang');
+          } else {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                backgroundColor: alertColor,
+                content: Text(
+                  'Gagal',
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            );
+          }
+        } catch (e) {
+          print(e.toString());
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              backgroundColor: alertColor,
+              content: Text(
+                'Format tanggal tidak valid',
+                textAlign: TextAlign.center,
+              ),
+            ),
+          );
+        }
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             backgroundColor: alertColor,
             content: Text(
-              'Gagal',
+              'Tanggal mulai dan selesai tidak boleh kosong',
               textAlign: TextAlign.center,
             ),
           ),
@@ -78,7 +109,7 @@ class _BookingPageState extends State<BookingPage> {
                       containerHeight: 210.0,
                     ),
                     showTitleActions: true, onConfirm: (date) {
-                  startDateController.text = date.toIso8601String();
+                  startDateController.text = date.toString();
                 }, currentTime: DateTime.now(), locale: LocaleType.id);
               },
               decoration: InputDecoration(
@@ -115,7 +146,7 @@ class _BookingPageState extends State<BookingPage> {
                       containerHeight: 210.0,
                     ),
                     showTitleActions: true, onConfirm: (date) {
-                  endDateController.text = date.toIso8601String();
+                  endDateController.text = date.toString();
                 }, currentTime: DateTime.now(), locale: LocaleType.id);
               },
               decoration: InputDecoration(

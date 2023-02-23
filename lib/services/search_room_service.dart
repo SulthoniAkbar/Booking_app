@@ -3,18 +3,21 @@ import 'package:http/http.dart' as http;
 import 'package:booking_app/models/schedule_model.dart';
 
 class SearchService {
-  String baseUrl = 'https://room-booking-apps.herokuapp.com/api';
+  String baseUrl = 'https://akbar.green-apps.xyz/api';
 
-  Future<List<ScheduleModel>> searchroom(
-      {DateTime startdate, DateTime enddate, String token}) async {
+  Future<List<ScheduleModel>> searchroom({
+    DateTime startdate,
+    DateTime enddate,
+    String token,
+  }) async {
     var url = '$baseUrl/rooms/search-available';
     var headers = {
-      'Content-Type': 'base/form-data',
+      'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + token
     };
     var body = jsonEncode({
-      'start_date': startdate,
-      'end_date': enddate,
+      'start_date': startdate.toIso8601String(),
+      'end_date': enddate.toIso8601String(),
     });
     var response = await http.post(
       url,
@@ -30,11 +33,10 @@ class SearchService {
       for (var item in data) {
         schedules.add(ScheduleModel.fromJson(item));
       }
-      Exception('Berhasil Login');
       print(schedules);
       return schedules;
     } else {
-      throw Exception('Gagal Login');
+      throw Exception('Failed Search');
     }
   }
 }

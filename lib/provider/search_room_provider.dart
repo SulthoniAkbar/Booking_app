@@ -7,8 +7,8 @@ class SearchProvider with ChangeNotifier {
 
   ScheduleModel get search => _search;
 
-  set search(ScheduleModel search) {
-    _search = search;
+  set search(ScheduleModel _search) {
+    _search = _search;
     notifyListeners();
   }
 
@@ -20,7 +20,7 @@ class SearchProvider with ChangeNotifier {
         startdate: startDate,
         enddate: endDate,
       );
-      _search = search;
+      _search = searchroom.isNotEmpty ? searchroom.first : null;
       return true;
     } catch (e) {
       print(e);

@@ -210,7 +210,8 @@ class _ReportingPageState extends State<ReportingPage> {
         margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
         child: TextButton(
           onPressed: () {
-            Navigator.pushNamed(context, '/home');
+            handeleReport();
+            // Navigator.pushNamed(context, '/home');
           },
           style: TextButton.styleFrom(
             backgroundColor: primaryColor,
