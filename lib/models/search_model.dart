@@ -1,17 +1,18 @@
 import 'package:booking_app/models/booking_model.dart';
 import 'package:booking_app/models/facilities_model.dart';
 import 'package:booking_app/models/facilty_model.dart';
+import 'package:booking_app/models/search_facility.dart';
 
-class ScheduleModel {
+class SearchModel {
   int id;
   String name;
   String floor;
   String capacity;
   String image;
-  List<FacilitiesModel> facilities;
+  List<SearchFacilitiesModel> facilities;
   List<BookingModel> bookings;
 
-  ScheduleModel({
+  SearchModel({
     this.id,
     this.name,
     this.floor,
@@ -21,15 +22,15 @@ class ScheduleModel {
     this.facilities,
   });
 
-  ScheduleModel.fromJson(Map<String, dynamic> json) {
+  SearchModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     floor = json['floor'];
     image = json['image'];
     capacity = json['capacity'];
     if (json['room_facilities'] != null) {
-      facilities = List<FacilitiesModel>.from(json['room_facilities']
-          .map((roomfacility) => FacilitiesModel.fromJson(roomfacility)));
+      facilities = List<SearchFacilitiesModel>.from(json['room_facilities']
+          .map((roomfacility) => SearchFacilitiesModel.fromJson(roomfacility)));
     }
 
     if (json['bookings'] != null) {

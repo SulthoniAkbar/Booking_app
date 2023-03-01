@@ -2,18 +2,18 @@ import 'package:booking_app/models/room_model.dart';
 
 class NotificationModel {
   int id;
-  int idRoom;
-  int idMember;
+  String idRoom;
+  String idMember;
   String attachment;
-  DateTime bookingDate;
-  DateTime bookingStartDate;
-  DateTime bookingEndDate;
+  String bookingDate;
+  String bookingStartDate;
+  String bookingEndDate;
   String name;
   String nip;
   String phone;
   String description;
-  int participant;
-  int devisi;
+  String participant;
+  String devisi;
   RoomModel room;
 
   NotificationModel({
@@ -37,9 +37,9 @@ class NotificationModel {
     id = json['id'];
     idRoom = json['room_id'];
     idMember = json['member_id'];
-    bookingDate = DateTime.parse(json['booking_date']);
-    bookingStartDate = DateTime.parse(json['booking_start_date']);
-    bookingEndDate = DateTime.parse(json['booking_end_date']);
+    bookingDate = json['booking_date'];
+    bookingStartDate = json['booking_start_date'];
+    bookingEndDate = json['booking_end_date'];
     name = json['name'];
     nip = json['nip'];
     phone = json['phone'];
@@ -52,6 +52,7 @@ class NotificationModel {
 
   Map<String, dynamic> toJson() {
     return {
+      'id': id,
       'name': room,
       'nip': nip,
       'phone': phone,

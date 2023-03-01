@@ -2,7 +2,6 @@ import 'package:booking_app/provider/auth_provider.dart';
 import 'package:booking_app/provider/notif_provider.dart';
 import 'package:booking_app/themes.dart';
 import 'package:booking_app/widget/notifikasi_card.dart';
-import 'package:booking_app/widget/booking_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

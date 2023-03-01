@@ -24,7 +24,7 @@ class NotifService {
       for (var item in data) {
         notif.add(NotificationModel.fromJson((item)));
       }
-      print(notif..toString());
+      // print(notif..toString());
       print(data);
       return notif;
     } else {

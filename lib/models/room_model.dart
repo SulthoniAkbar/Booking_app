@@ -1,14 +1,16 @@
 class RoomModel {
   int id;
   String name;
-  int floor;
-  int capacity;
+  String floor;
+  String capacity;
+  String image;
 
   RoomModel({
     this.id,
     this.name,
     this.floor,
     this.capacity,
+    this.image,
   });
 
   RoomModel.fromJson(Map<String, dynamic> json) {
@@ -16,6 +18,7 @@ class RoomModel {
     name = json['name'];
     floor = json['floor'];
     capacity = json['capacity'];
+    image = json['image'];
   }
 
   Map<String, dynamic> toJson() {
@@ -24,6 +27,7 @@ class RoomModel {
       'name': name,
       'floor': floor,
       'capacity': capacity,
+      'image': image,
     };
   }
 }

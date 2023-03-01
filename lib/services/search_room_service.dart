@@ -1,13 +1,14 @@
 import 'dart:convert';
+import 'package:booking_app/models/search_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:booking_app/models/schedule_model.dart';
 
 class SearchService {
   String baseUrl = 'https://akbar.green-apps.xyz/api';
 
-  Future<List<ScheduleModel>> searchroom({
-    DateTime startdate,
-    DateTime enddate,
+  Future<List<SearchModel>> searchroom({
+    String startdate,
+    String enddate,
     String token,
   }) async {
     var url = '$baseUrl/rooms/search-available';
@@ -16,8 +17,8 @@ class SearchService {
       'Authorization': 'Bearer ' + token
     };
     var body = jsonEncode({
-      'start_date': startdate.toIso8601String(),
-      'end_date': enddate.toIso8601String(),
+      'start_date': startdate.toString(),
+      'end_date': enddate.toString(),
     });
     var response = await http.post(
       url,
@@ -25,17 +26,19 @@ class SearchService {
       body: body,
     );
     print(response.body);
+    print('Request body: $body');
 
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body)['data'];
-      List<ScheduleModel> schedules = [];
+      List<SearchModel> search = [];
 
       for (var item in data) {
-        schedules.add(ScheduleModel.fromJson(item));
+        search.add(SearchModel.fromJson(item));
       }
-      print(schedules);
-      return schedules;
+      print(search);
+      return search;
     } else {
+      print(response.body);
       throw Exception('Failed Search');
     }
   }

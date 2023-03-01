@@ -29,28 +29,48 @@ class _BookingPageState extends State<BookingPage> {
       if (startDateController.text.isNotEmpty &&
           endDateController.text.isNotEmpty) {
         try {
-          DateTime startDateTime =
-              DateFormat("yyyy-MM-dd HH:mm:ss").parse(startDateController.text);
-          DateTime endDateTime =
-              DateFormat("yyyy-MM-dd HH:mm:ss").parse(endDateController.text);
-
-          if (await searchProvider.searchroom(
-            token: authProvider.user.token,
-            startDate: startDateTime,
-            endDate: endDateTime,
-          )) {
-            Navigator.pushNamed(context, '/listruang');
-          } else {
+          final now = DateTime.now();
+          startdate =
+              DateFormat("yyyy-MM-dd kk:mm").parse(startDateController.text);
+          enddate =
+              DateFormat("yyyy-MM-dd kk:mm").parse(endDateController.text);
+          if (startdate.isBefore(now)) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 backgroundColor: alertColor,
                 content: Text(
-                  'Gagal',
+                  'Tanggal mulai harus setelah atau sama dengan tanggal sekarang',
                   textAlign: TextAlign.center,
                 ),
               ),
             );
+            return;
           }
+
+          if (enddate.isBefore(startdate)) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                backgroundColor: alertColor,
+                content: Text(
+                  'Tanggal selesai harus setelah tanggal mulai',
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            );
+            return;
+          }
+          if (await searchProvider.searchroom(
+              token: authProvider.user.token,
+              startDate: DateFormat("yyyy-MM-dd kk:mm:ss").format(startdate),
+              endDate: DateFormat("yyyy-MM-dd kk:mm:ss").format(enddate))) {
+            Navigator.pushNamed(context, '/listruang');
+          }
+          // if (await searchProvider.searchroom(
+          //     token: authProvider.user.token,
+          //     startDate: DateFormat("yyyy-MM-dd kk:mm").format(startdate),
+          //     endDate: DateFormat("yyyy-MM-dd kk:mm").format(enddate)) {
+          //   Navigator.pushNamed(context, '/listruang');
+          // }
         } catch (e) {
           print(e.toString());
           ScaffoldMessenger.of(context).showSnackBar(
@@ -80,7 +100,7 @@ class _BookingPageState extends State<BookingPage> {
       return AppBar(
         backgroundColor: bgColor1,
         centerTitle: true,
-        title: Text('Reporting'),
+        title: Text('Booking'),
         elevation: 0,
       );
     }
@@ -109,7 +129,10 @@ class _BookingPageState extends State<BookingPage> {
                       containerHeight: 210.0,
                     ),
                     showTitleActions: true, onConfirm: (date) {
-                  startDateController.text = date.toString();
+                  print(date);
+                  String formattedDate =
+                      DateFormat("yyyy-MM-dd kk:mm").format(date);
+                  startDateController.text = formattedDate;
                 }, currentTime: DateTime.now(), locale: LocaleType.id);
               },
               decoration: InputDecoration(
@@ -146,7 +169,10 @@ class _BookingPageState extends State<BookingPage> {
                       containerHeight: 210.0,
                     ),
                     showTitleActions: true, onConfirm: (date) {
-                  endDateController.text = date.toString();
+                  print(date);
+                  String formattedDate =
+                      DateFormat("yyyy-MM-dd kk:mm").format(date);
+                  endDateController.text = formattedDate;
                 }, currentTime: DateTime.now(), locale: LocaleType.id);
               },
               decoration: InputDecoration(
